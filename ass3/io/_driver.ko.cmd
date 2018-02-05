@@ -1,0 +1,1 @@
+cmd_/home/sukhdev/programs/cn2/ass3/io/driver.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/sukhdev/programs/cn2/ass3/io/driver.ko /home/sukhdev/programs/cn2/ass3/io/driver.o /home/sukhdev/programs/cn2/ass3/io/driver.mod.o ;  true
