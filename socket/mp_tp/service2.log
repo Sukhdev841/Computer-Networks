@@ -1,0 +1,44 @@
+
+Message Received.
+
+****************************************************************************
+
+Service Type : 2
+Client Name : 
+Message : service1
+Read Pipe : 
+Special Field : (@
+
+****************************************************************************
+
+Message Sent.
+****************************************************************************
+
+Service Type : 0
+Client Name : service2
+Message : this is service2
+Read Pipe : 
+Special Field : 
+
+****************************************************************************
+
+Message Received.
+
+****************************************************************************
+
+Service Type : 2
+Client Name : client
+Message : hey_service2
+Read Pipe : 
+Special Field : (@
+
+****************************************************************************
+
+Message Sent.
+****************************************************************************
+
+Service Type : 0
+Client Name : service2
+Message : this is service2
+Read Pipe : 
+Special Field : 

@@ -1,0 +1,44 @@
+
+Message Sent
+
+****************************************************************************
+
+Service Type : 1
+Client Name : service3
+Message : this is service3
+Read Pipe : 
+Special Field : 
+
+****************************************************************************
+
+Message Received.
+****************************************************************************
+
+Service Type : 3
+Client Name : amit
+Message : hey_service_3
+Read Pipe : amit
+Special Field : amits
+
+****************************************************************************
+
+Message Sent
+
+****************************************************************************
+
+Service Type : 1
+Client Name : service3
+Message : this is service3
+Read Pipe : 
+Special Field : 
+
+****************************************************************************
+
+Message Received.
+****************************************************************************
+
+Service Type : 3
+Client Name : amit
+Message : hey_service_3
+Read Pipe : amit
+Special Field : amits
