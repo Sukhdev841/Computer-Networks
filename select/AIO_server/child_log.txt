@@ -1,0 +1,108 @@
+
+Message Sent
+
+****************************************************************************
+
+Service Type : 2
+Client Name : child
+Message : hello_server
+Read Pipe : 
+Special Field : 
+
+****************************************************************************
+
+****************************************************************************
+
+Service Type : 0
+Client Name : server
+Message : Child execution done
+Read Pipe : 
+Special Field : 0
+
+****************************************************************************
+
+Message Sent
+
+****************************************************************************
+
+Service Type : 2
+Client Name : child
+Message : hello_server
+Read Pipe : 
+Special Field : 0
+
+****************************************************************************
+
+****************************************************************************
+
+Service Type : 0
+Client Name : server
+Message : hello_server
+Read Pipe : 
+Special Field : 1
+
+****************************************************************************
+
+Message Sent
+
+****************************************************************************
+
+Service Type : 2
+Client Name : child
+Message : hello_server
+Read Pipe : 
+Special Field : 1
+
+****************************************************************************
+
+****************************************************************************
+
+Service Type : 0
+Client Name : server
+Message : hello_server
+Read Pipe : 
+Special Field : 2
+
+****************************************************************************
+
+Message Sent
+
+****************************************************************************
+
+Service Type : 2
+Client Name : child
+Message : hello_server
+Read Pipe : 
+Special Field : 2
+
+****************************************************************************
+
+****************************************************************************
+
+Service Type : 0
+Client Name : server
+Message : hello_server
+Read Pipe : 
+Special Field : 4
+
+****************************************************************************
+
+Message Sent
+
+****************************************************************************
+
+Service Type : 2
+Client Name : child
+Message : hello_server
+Read Pipe : 
+Special Field : 4
+
+****************************************************************************
+
+****************************************************************************
+
+Service Type : 0
+Client Name : server
+Message : hello_server
+Read Pipe : 
+Special Field : 6

@@ -18,9 +18,14 @@ message_t server_global_message;
 char *received_str;
 message_t received_msg;
 
+int p4fd = -1;
+
+char *global_data = "this is global data";
+
 void signal_handler(int sig)
 {
   signal(SIGUSR1,signal_handler);
+
   cout<<"\n################################################\n";
   cout<<"\n################################################\n";
   cout<<"\n################################################\n";
@@ -28,6 +33,14 @@ void signal_handler(int sig)
   cout<<"\n################################################\n";
   cout<<"\n################################################\n";
   cout<<"\n################################################\n";
+  if(p4fd == -1)
+  {
+    cout<<"\np4fd was -1\n";
+    p4fd = open(process_4_fd,O_WRONLY);
+    cout<<"\nnow p4fd = "<<p4fd;
+  }
+  write(p4fd,global_data,strlen(global_data)+1);
+  cout<<"\nData is sent to process4\n";
 }
 
 int send_msg(int fd)
@@ -72,6 +85,7 @@ void child(int r_fd,int w_fd)
 int main()
 {
   signal(SIGUSR1,signal_handler);
+  mkfifo(process_4_fd,0777);
   received_str = new char[100];
   mkfifo(main_fifo,0666);
   mkfifo(process_id_fifo,0666);
