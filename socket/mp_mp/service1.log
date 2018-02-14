@@ -3,10 +3,10 @@ Message Received.
 
 ****************************************************************************
 
-Service Type : 2
+Service Type : 0
 Client Name : 
 Message : service1
-Read Pipe : 
+Read Pipe : œ
 Special Field : (@
 
 ****************************************************************************
@@ -17,7 +17,7 @@ Message Sent.
 Service Type : 0
 Client Name : service1
 Message : this is service1
-Read Pipe : 
+Read Pipe : ˜
 Special Field : 
 
 ****************************************************************************
@@ -26,10 +26,10 @@ Message Received.
 
 ****************************************************************************
 
-Service Type : 2
+Service Type : 0
 Client Name : client
 Message : hey
-Read Pipe : 
+Read Pipe : œ
 Special Field : (@
 
 ****************************************************************************
@@ -40,7 +40,7 @@ Message Sent.
 Service Type : 0
 Client Name : service1
 Message : this is service1
-Read Pipe : 
+Read Pipe : ˜
 Special Field : 
 
 ****************************************************************************
@@ -49,8 +49,8 @@ Message Received.
 
 ****************************************************************************
 
-Service Type : 2
+Service Type : 0
 Client Name : client
 Message : hey
-Read Pipe : 
+Read Pipe : œ
 Special Field : (@
