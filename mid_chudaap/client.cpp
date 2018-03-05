@@ -21,10 +21,32 @@ using namespace std;
 key_t shared_key = 1; 
 int fd = -1;
 int sock = -1;
+int *list;
 
 void handler(int sig)
 {
-	cout<<"\nHandling\n";
+	// do your operation
+	
+	
+	
+	// signal next process in list
+	for(int i=0;i<size;i++)
+	{
+		if(list[i] == getpid())
+		{
+			if( i+1 < size  && list[i+1] != 0)
+			{
+				kill(list[i+1],SIGUSR1);
+				break;
+			}
+			else
+			{
+				kill(list[0],SIGUSR1);
+				break;
+			}
+			
+		}
+	}
 }
 
 void connect()
@@ -73,7 +95,7 @@ int main()
 		cout<<"\nMemory doesn't exists\n";
 		i_am_first = true;
 	}
-	int *list = (int*)shmat(shmid,NULL,0);
+	list = (int*)shmat(shmid,NULL,0);
 	if(i_am_first)
 	{
 		// setting everthing to 0
