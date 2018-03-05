@@ -41,7 +41,7 @@ void child(int sock)
   int pass_sd;
   memcpy(&pass_sd, CMSG_DATA(cmsg), sizeof(pass_sd));
   printf("Received descriptor = %d\n", pass_sd);
-  write(pass_sd,"hello",6);
+  write(pass_sd,"hello by child",14);
 }
 
 int main()
@@ -83,7 +83,7 @@ int main()
   cout<<"\nParent got new client\n";
 
     // now send new_socket to child
-
+	
     iovec iov[1]={0};
 
     const char *str = "file";
@@ -111,8 +111,10 @@ int main()
     cmsg->cmsg_len = CMSG_LEN(sizeof(new_socket));
     memcpy(CMSG_DATA(cmsg),&new_socket,sizeof(new_socket));
     parent_msg.msg_controllen = cmsg->cmsg_len;
-
-    if(sendmsg(fd[parent_sock],&parent_msg,0)< 0 )
+    cout<<"\nnew_socket = "<<new_socket<<endl;
+		int ret_2 = sendmsg(fd[parent_sock],&parent_msg,0);
+		cout<<"\nAfter sendmsg : "<<ret_2<<endl;
+    if( ret_2 < 0 )
     {
       cout<<"\nsendmsg() failed\n";
       exit(0);
