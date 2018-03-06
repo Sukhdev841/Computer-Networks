@@ -14,6 +14,7 @@ using namespace std;
 
 int main()
 {
+	system("rm socket");
 	int sockfd;
 	sockaddr_un cliaddr,servaddr;
 	sockfd = socket(AF_LOCAL,SOCK_STREAM,0);
