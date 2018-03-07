@@ -67,18 +67,18 @@ int main()
 		sem = sem_open(sem_name,0);			// i am not first
 		cout<<"\nI am not first\n";
 	}
-		
-	
+
+
 	if(!put_id())
 	{
 		cout<<"\nThere is no more space available in list\n";
 		exit(0);
 	}
-	
-	
+
+
 	if(i_am_first)
 	{
-		
+
 		sock = socket(AF_INET,SOCK_STREAM,0);
 		if( sock < 0)
 		{
@@ -109,7 +109,7 @@ int main()
 	while(true)
 	{
 		cout<<"\nin while loop : "<<getpid();
-		
+
 		sem_wait(sem);
 		cout<<endl;
 		for(int i=0;i<size;i++)
@@ -119,7 +119,7 @@ int main()
 		sem_post(sem);
 		sleep(2);
 	}
-	
+
 	return 0;
 }
 
@@ -127,10 +127,10 @@ bool put_id()
 {
 	cout<<"\nPtting id\n";
 	cout<<sem<<endl;
-	
+
 	sem_wait(sem);
 	bool flag = false;
-	
+
 	cout<<"\nGot semaphore\n";
 	for(int i=0;i<size;i++)
 	{
@@ -138,10 +138,10 @@ bool put_id()
 		cout<<"\nl["<<i<<"] = "<<l[i]<<endl;
 		if(l[i] == 0)
 		{
-			
+
 			cout<<"\nid is put at : "<<i<<endl;
 			l[i] = getpid();
-			
+
 			index_ = i;
 			cout<<"\nPtting id done\n";
 			flag = true;
@@ -161,14 +161,14 @@ bool put_id()
 void handler1(int sig)
 {
 	cout<<"\nGot signal1\n";
-	
+
 	// do operation
-	
+
 	char buff[100];
 	read(sock,buff,99);
 	sleep(1);
 	cout<<"\nData from server : "<<buff<<" : "<<getpid()<<endl;
-	
+
 	// signal next
 	sem_wait(sem);
 	if(index_+1 < size && l[index_+1] != 0)
@@ -184,7 +184,7 @@ void handler2(int sig)
 	cout<<"\nGot signal2\n";
 	int sockfd;
 	sockaddr_un cliaddr,servaddr;
-			//system("rm socket");
+	system("rm socket");
 	char *path = "./socket";
 	sockfd = socket(AF_UNIX,SOCK_STREAM,0);
 	cout<<"\nsockfd = "<<sockfd<<endl;
@@ -195,12 +195,12 @@ void handler2(int sig)
 	cout<<"\nbind_ret "<<bind_ret<<endl;
 	int l_ret = listen(sockfd,10);
 	cout<<"\nListening : "<<l_ret<<endl;
-	
+
 	socklen_t len = sizeof(cliaddr);
 	int connfd = accept(sockfd,(sockaddr*) &cliaddr,&len);
-	
+
 	cout<<"\nconnfd = "<<connfd<<endl;
-	
+
 	cout<<"\nAccepted "<<connfd<<endl;
 		iovec iov[1]={0};
 
@@ -235,15 +235,15 @@ void handler2(int sig)
 		   cout<<"\nsendmsg() failed\n";
 		   exit(0);
 		 }
-		 
+
 		 cout<<"\nmessage sent\n";
-		 
+
 		 close(sockfd);
 		 close(connfd);
-	
+
 	cout<<"\nSharing is done\n";
 
-	
+
 }
 
 void get_shared_socket()
@@ -256,12 +256,20 @@ void get_shared_socket()
 		cout<<l[i]<<" ";
 	cout<<endl;
 	if(index_-1 < 0 && l[index_-1] != 0)
+	{
+		cout<<"\nKilling "<<l[index_-1]<<" for socket\n";
 		kill(l[index_-1],SIGUSR2);
+	}
+
 	else
+	{
+		cout<<"\nKilling "<<l[0]<<" for socket\n";
 		kill(l[0],SIGUSR2);
+	}
+
 	cout<<"\nafter kill get_shared_socket\n";
 	sem_post(sem);
-	
+
 	sleep(5);
 	int sock_temp;
 	sockaddr_un cliaddr,servaddr;
@@ -270,14 +278,14 @@ void get_shared_socket()
 	servaddr.sun_family = AF_LOCAL;
 	char *path = "./socket";
 	strcpy(servaddr.sun_path,path);
-	
+
 	if(connect(sock_temp,(sockaddr*)&servaddr,sizeof(servaddr)) < 0)
 	{
 		cout<<"\nConnection failed of unix_socket\n";
 	}
 	cout<<"\nConnected \n";
-	
-	
+
+
 	int rc;
 	  msghdr child_msg;
 	  memset(&child_msg,   0, sizeof(child_msg));
@@ -299,6 +307,5 @@ void get_shared_socket()
 	  }
 	  memcpy(&sock, CMSG_DATA(cmsg), sizeof(sock));
 		cout<<"\nSocket received with value : "<<sock<<endl;
-	
-}
 
+}
