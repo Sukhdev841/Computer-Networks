@@ -1,0 +1,5 @@
+cc -g    -c -o array_sum_xdr.o array_sum_xdr.c &&
+cc -g     -o array_sum_client  array_sum_clnt.o array_sum_client.o array_sum_xdr.o -lnsl &&
+cc -g    -c -o array_sum_svc.o array_sum_svc.c &&
+cc -g    -c -o array_sum_server.o array_sum_server.c &&
+cc -g     -o array_sum_server  array_sum_svc.o array_sum_server.o array_sum_xdr.o -lnsl;
