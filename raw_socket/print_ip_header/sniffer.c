@@ -5,6 +5,8 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <linux/if_ether.h>
+#include <linux/tcp.h>
+//#include <linux/ip.h>
 //#include <linux/in.h>
 #include <stdlib.h>
 #include <netinet/ip.h>
@@ -13,6 +15,13 @@
        #include <arpa/inet.h>
 
 #define BUFFER_MAX 2048
+
+void checkout_tcp(char *buffer)
+{
+	struct tcphdr *tcp = (struct tcphdr*)(buffer +sizeof(struct ethhdr)+ sizeof(struct ip));
+	printf("\nmy destination %u\n",htons(tcp->dest));
+	printf("\nMy source %u\n",htons(tcp->source));
+}
 
 int main(int argc, char *argv[])
 {
@@ -84,7 +93,7 @@ int main(int argc, char *argv[])
         case IPPROTO_ICMP: printf("ICMP\n");break;
         case IPPROTO_IGMP: printf("IGMP\n");break;
         case IPPROTO_IPIP: printf("IPIP\n");break;
-        case IPPROTO_TCP :
+        case IPPROTO_TCP :	printf("TCP\n");checkout_tcp(buffer);
         case IPPROTO_UDP :  printf("%s,", proto == IPPROTO_TCP ? "TCP": "UDP"); 
 			printf("source port: %u,",
 				(p[0]<<8)&0XFF00 |  p[1]&0XFF);
